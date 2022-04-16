@@ -1,0 +1,61 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Wordle Clone
+  link(rel='stylesheet', href='/stylesheets/style.css' type='text/css')
+  script(src='https://unpkg.com/axios/dist/axios.min.js')
+header
+  h1 Wordle
+.message-container
+.game-container
+  #board-area
+  #keyboard-area
+    button#Q.button(onclick='handleClick(id)') Q
+    button#W.button(onclick='handleClick(id)') W
+    button#E.button(onclick='handleClick(id)') E
+    button#R.button(onclick='handleClick(id)') R
+    button#T.button(onclick='handleClick(id)') T
+    button#Y.button(onclick='handleClick(id)') Y
+    button#U.button(onclick='handleClick(id)') U
+    button#I.button(onclick='handleClick(id)') I
+    button#O.button(onclick='handleClick(id)') O
+    button#P.button(onclick='handleClick(id)') P
+    button#A.button(onclick='handleClick(id)') A
+    button#S.button(onclick='handleClick(id)') S
+    button#D.button(onclick='handleClick(id)') D
+    button#F.button(onclick='handleClick(id)') F
+    button#G.button(onclick='handleClick(id)') G
+    button#H.button(onclick='handleClick(id)') H
+    button#J.button(onclick='handleClick(id)') J
+    button#K.button(onclick='handleClick(id)') K
+    button#L.button(onclick='handleClick(id)') L
+    button#ENTER.button(onclick='handleClick(id)') ENTER
+    button#Z.button(onclick='handleClick(id)') Z
+    button#X.button(onclick='handleClick(id)') X
+    button#C.button(onclick='handleClick(id)') C
+    button#V.button(onclick='handleClick(id)') V
+    button#B.button(onclick='handleClick(id)') B
+    button#N.button(onclick='handleClick(id)') N
+    button#M.button(onclick='handleClick(id)') M
+    button#BACKSPACE.button(onclick='handleClick(id)')
+.pop-up
+  #exit
+    button(onclick='deleteUser()') X
+  h1 STATISTICS
+  .statistic-content
+    .statistic1 0
+    .statistic2 0
+  .statistic-label
+    .label1
+      p Played
+    .label2
+      p Current Streak
+  button#play-again(onclick='playAgain()') Play again?
+footer
+  p
+    | Wordle clone created by:
+    a#link(href='https://github.com/renatavanetta' target='_blank' rel='noopener noreferrer') Renata Vanetta
+script(type='text/javascript', src='javascripts/data_management.js')
+script(type='text/javascript', src='javascripts/tiles.js')
