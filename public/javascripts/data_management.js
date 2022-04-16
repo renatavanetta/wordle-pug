@@ -201,6 +201,7 @@ async function checkWord() {
 
                     line++;
                     column=0;
+                    processing = false;
                     console.log('processing 11 ' + processing)
                 })
         }
