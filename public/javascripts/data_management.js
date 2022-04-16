@@ -21,9 +21,9 @@ function myEventHandler(event){
     }
 }
 
-start() ;
+//start() ;
 
-async function start() {
+//async function start() {
     if(userId == null){
         axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
             .then(response => {
@@ -31,7 +31,7 @@ async function start() {
                 startGame();
             })
     }
-}
+//}
 
 function startGame() {
     axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
