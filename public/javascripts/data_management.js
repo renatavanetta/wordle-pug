@@ -4,7 +4,7 @@ popUp.style.display='none';
 
 let line = 0;
 let column = 0;
-var userId = "";
+var userId = null;
 let processing = false;
 
 document.addEventListener("keydown", myEventHandler);
