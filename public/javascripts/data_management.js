@@ -20,15 +20,20 @@ function myEventHandler(event){
     }
 }
 
-if(userId == null){
-    axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
-        .then(response => {
-            userId = response.data.id;
-            axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
-                .then(response => {
-                })
-        })
+start() ;
+
+async function start() {
+    if(userId == null){
+        axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
+            .then(response => {
+                userId = response.data.id;
+                axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
+                    .then(response => {
+                    })
+            })
+    }
 }
+
 
 function handleClick(letter) {
 
@@ -74,7 +79,7 @@ function deleteLetter() {
     }
 }
 
-function playAgain() {
+async function playAgain() {
     axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
         .then(response => {
             if(response.data.message = 'new game starting'){
@@ -85,7 +90,7 @@ function playAgain() {
     clearTiles();
 }
 
-function deleteUser() {
+async function deleteUser() {
     axios.post('https://wordle-clone-1-0.herokuapp.com/deleteUser', ({id: userId}))
         .then(response => {
             writeMessage('Bye Bye :)');
@@ -93,7 +98,7 @@ function deleteUser() {
         })
 }
 
-function clearTiles() {
+async function clearTiles() {
     line = 0;
     column = 0;
 
