@@ -24,7 +24,6 @@ if(userId == null){
     axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
         .then(response => {
             userId = response.data.id;
-            alert('estou enviando requisição')
             axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
                 .then(response => {
                     console.log(response)
