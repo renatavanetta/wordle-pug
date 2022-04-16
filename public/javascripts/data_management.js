@@ -116,8 +116,6 @@ async function clearTiles() {
     for(let a=0; a < keyboard.length; a++){
         keyboard[a].style.backgroundColor = '#d3d6da';
     }
-
-
 }
 
 async function checkWord() {
@@ -193,6 +191,7 @@ async function checkWord() {
         }
         else{
             writeMessage('You need to type a 5 letter word.');
+            processing = false;
         }
     }
 
