@@ -100,7 +100,7 @@ async function deleteUser() {
         })
 }
 
-async function clearTiles() {
+function clearTiles() {
     line = 0;
     column = 0;
 
