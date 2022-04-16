@@ -119,73 +119,82 @@ async function clearTiles() {
 
 }
 
+let processing = false;
+
 async function checkWord() {
 
     let word = "";
 
-    if(column === 5){
-        for(let a=0; a<5; a++){
-            const tile = document.getElementById('line-' + line + '-column-' + a)
-            const letter = typeof tile.textContent == 'string'? tile.textContent : tile.innerText;
-            word += letter;
-        }
+    if(!processing){
+        if(column === 5){
+            for(let a=0; a<5; a++){
+                const tile = document.getElementById('line-' + line + '-column-' + a)
+                const letter = typeof tile.textContent == 'string'? tile.textContent : tile.innerText;
+                word += letter;
+            }
 
-        let url = `https://wordle-clone-1-0.herokuapp.com/checkword/`;
+            let url = `https://wordle-clone-1-0.herokuapp.com/checkword/`;
 
-        axios.post(url, {sentWord: word, id: userId})
-            .then(response => {
-                if(response.data.message == 'word do not exist in list'){
-                    writeMessage('word do not exist in list. Try another.');
-                    line = response.data.line;
-                    return
-                }
+            axios.post(url, {sentWord: word, id: userId})
+                .then(response => {
+                    if(response.data.message == 'word do not exist in list'){
+                        writeMessage('word do not exist in list. Try another.');
+                        line = response.data.line;
+                        processing = false;
+                        return
+                    }
 
-                if(response.data.wordChecker.status == "gameOver"){
-                    writeMessage('Word was: ' + response.data.wordChecker.pastWord);
-                    popUp.style.display='';
-                    const divPlayed = document.querySelectorAll('.statistic1');
-                    divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
-                    const divStreak = document.querySelectorAll('.statistic2');
-                    divStreak[0].innerText = String(response.data.wordChecker.currentStreak);
-                    return
-                }
+                    if(response.data.wordChecker.status == "gameOver"){
+                        writeMessage('Word was: ' + response.data.wordChecker.pastWord);
+                        popUp.style.display='';
+                        const divPlayed = document.querySelectorAll('.statistic1');
+                        divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
+                        const divStreak = document.querySelectorAll('.statistic2');
+                        divStreak[0].innerText = String(response.data.wordChecker.currentStreak);
+                        processing = false;
+                        return
+                    }
 
-                if(response.data.wordChecker.status == "win"){
+                    if(response.data.wordChecker.status == "win"){
+                        for(let a=0; a<5; a++){
+                            document.getElementById('line-' + line + '-column-' + a).style.backgroundColor = "green";
+                        }
+
+                        popUp.style.display='';
+                        const divPlayed = document.querySelectorAll('.statistic1');
+                        divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
+                        const divStreak = document.querySelectorAll('.statistic2');
+                        divStreak[0].innerText = String(response.data.wordChecker.currentStreak);
+                        processing = false;
+                        return
+
+                    }
+
                     for(let a=0; a<5; a++){
-                        document.getElementById('line-' + line + '-column-' + a).style.backgroundColor = "green";
+                        document.getElementById('line-' + line + '-column-' + a).style.backgroundColor = response.data.wordChecker[a];
                     }
 
-                    popUp.style.display='';
-                    const divPlayed = document.querySelectorAll('.statistic1');
-                    divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
-                    const divStreak = document.querySelectorAll('.statistic2');
-                    divStreak[0].innerText = String(response.data.wordChecker.currentStreak);
-                    return
+                    let b = 0;
 
-                }
-
-                for(let a=0; a<5; a++){
-                    document.getElementById('line-' + line + '-column-' + a).style.backgroundColor = response.data.wordChecker[a];
-                }
-
-                let b = 0;
-
-                for(let a=5; a<10; a++){
-                    let letter = response.data.wordChecker[a]
-                    if(b == b) {
-                        document.getElementById(letter).style.backgroundColor = response.data.wordChecker[b]
+                    for(let a=5; a<10; a++){
+                        let letter = response.data.wordChecker[a]
+                        if(b == b) {
+                            document.getElementById(letter).style.backgroundColor = response.data.wordChecker[b]
+                        }
+                        b++;
                     }
-                    b++;
-                }
 
 
-                line++;
-                column=0;
-            })
+                    line++;
+                    column=0;
+                })
+        }
+        else{
+            writeMessage('You need to type a 5 letter word.');
+        }
     }
-    else{
-        writeMessage('You need to type a 5 letter word.');
-    }
+
+
 }
 
 function writeMessage(message) {
