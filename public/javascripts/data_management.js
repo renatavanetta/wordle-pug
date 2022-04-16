@@ -25,7 +25,7 @@ window.onload = function(){
     start();
 }
 
-async function start() {
+function start() {
     if(userId == null){
         axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
             .then(response => {
