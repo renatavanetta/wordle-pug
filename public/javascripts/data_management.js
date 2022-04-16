@@ -21,24 +21,22 @@ function myEventHandler(event){
     }
 }
 
-//start() ;
+window.onload = function(){
+    start();
+}
 
-//async function start() {
+
+async function start() {
     if(userId == null){
         axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
             .then(response => {
                 userId = response.data.id;
-                startGame();
+                axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
+                    .then(response => {
+                    })
             })
     }
-//}
-
-function startGame() {
-    axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
-        .then(response => {
-        })
 }
-
 
 function handleClick(letter) {
 
