@@ -4,7 +4,7 @@ popUp.style.display='none';
 
 let line = 0;
 let column = 0;
-let userId = null;
+var userId = "";
 let processing = false;
 
 document.addEventListener("keydown", myEventHandler);
@@ -28,11 +28,15 @@ async function start() {
         axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
             .then(response => {
                 userId = response.data.id;
-                axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
-                    .then(response => {
-                    })
+                startGame();
             })
     }
+}
+
+function startGame() {
+    axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
+        .then(response => {
+        })
 }
 
 
