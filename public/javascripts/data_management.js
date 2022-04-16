@@ -122,9 +122,15 @@ async function checkWord() {
 
     let word = "";
 
+    console.log('processing 1 ' + processing)
+
     if(processing == false){
 
+        console.log('processing 2 ' + processing)
+
         processing = true;
+
+        console.log('processing 3 ' + processing)
 
         if(column === 5){
             for(let a=0; a<5; a++){
@@ -133,6 +139,8 @@ async function checkWord() {
                 word += letter;
             }
 
+            console.log('processing 4 ' + processing)
+
             let url = `https://wordle-clone-1-0.herokuapp.com/checkword/`;
 
             axios.post(url, {sentWord: word, id: userId})
@@ -140,7 +148,9 @@ async function checkWord() {
                     if(response.data.message == 'word do not exist in list'){
                         writeMessage('word do not exist in list. Try another.');
                         line = response.data.line;
+                        console.log('processing 5 ' + processing)
                         processing = false;
+                        console.log('processing 6 ' + processing)
                         return
                     }
 
@@ -151,7 +161,9 @@ async function checkWord() {
                         divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
                         const divStreak = document.querySelectorAll('.statistic2');
                         divStreak[0].innerText = String(response.data.wordChecker.currentStreak);
+                        console.log('processing 7 ' + processing)
                         processing = false;
+                        console.log('processing 8 ' + processing)
                         return
                     }
 
@@ -165,7 +177,9 @@ async function checkWord() {
                         divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
                         const divStreak = document.querySelectorAll('.statistic2');
                         divStreak[0].innerText = String(response.data.wordChecker.currentStreak);
+                        console.log('processing 9 ' + processing)
                         processing = false;
+                        console.log('processing 10 ' + processing)
                         return
 
                     }
@@ -187,11 +201,14 @@ async function checkWord() {
 
                     line++;
                     column=0;
+                    console.log('processing 11 ' + processing)
                 })
         }
         else{
             writeMessage('You need to type a 5 letter word.');
+            console.log('processing 12 ' + processing)
             processing = false;
+            console.log('processing 13 ' + processing)
         }
     }
 
