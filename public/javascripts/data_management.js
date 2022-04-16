@@ -1,10 +1,9 @@
-const keyboard = document.getElementById('keyboard-area');
 const popUp = document.querySelector('.pop-up')
 popUp.style.display='none';
 
 let line = 0;
 let column = 0;
-var userId = null;
+let userId = null;
 let processing = false;
 
 document.addEventListener("keydown", myEventHandler);
@@ -161,7 +160,7 @@ async function checkWord() {
                         for(let a=0; a<5; a++){
                             document.getElementById('line-' + line + '-column-' + a).style.backgroundColor = "green";
                         }
-                        writeMessage('Congrets!!')
+                        writeMessage('congratulations!! :D')
                         popUp.style.display='';
                         const divPlayed = document.querySelectorAll('.statistic1');
                         divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
