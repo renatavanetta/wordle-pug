@@ -161,7 +161,7 @@ async function checkWord() {
                         for(let a=0; a<5; a++){
                             document.getElementById('line-' + line + '-column-' + a).style.backgroundColor = "green";
                         }
-
+                        writeMessage('Congrets!!')
                         popUp.style.display='';
                         const divPlayed = document.querySelectorAll('.statistic1');
                         divPlayed[0].innerText = String(response.data.wordChecker.numberOfPlays)
@@ -197,11 +197,11 @@ async function checkWord() {
     }
 }
 
-function writeMessage(message) {
+async function writeMessage(message) {
     const message_element = document.querySelector('.message-container')
     const message_p = document.createElement('p');
     message_p.textContent = message;
     message_element.append(message_p);
-    setTimeout(() => message_element.removeChild(message_p), 2000);
+    setTimeout(() => message_element.removeChild(message_p), 3000);
 }
 
