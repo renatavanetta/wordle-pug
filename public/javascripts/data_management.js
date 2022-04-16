@@ -21,11 +21,11 @@ function myEventHandler(event){
 }
 
 if(userId == null){
-    axios.get('http://localhost:3000/userId')
+    axios.get('https://wordle-clone-1-0.herokuapp.com/userId')
         .then(response => {
             userId = response.data.id;
 
-            axios.post('http://localhost:3000/startGame', ({id: userId}))
+            axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
                 .then(response => {
                 })
         })
@@ -76,7 +76,7 @@ function deleteLetter() {
 }
 
 function playAgain() {
-    axios.post('http://localhost:3000/startGame', ({id: userId}))
+    axios.post('https://wordle-clone-1-0.herokuapp.com/startGame', ({id: userId}))
         .then(response => {
             if(response.data.message = 'new game starting'){
                 popUp.style.display='none';
@@ -87,7 +87,7 @@ function playAgain() {
 }
 
 function deleteUser() {
-    axios.post('http://localhost:3000/deleteUser', ({id: userId}))
+    axios.post('https://wordle-clone-1-0.herokuapp.com/deleteUser', ({id: userId}))
         .then(response => {
             writeMessage('Bye Bye :)');
             popUp.style.display='none';
@@ -126,7 +126,7 @@ function checkWord() {
             word += letter;
         }
 
-        let url = `http://localhost:3000/checkword/`;
+        let url = `https://wordle-clone-1-0.herokuapp.com/checkword/`;
 
         axios.post(url, {sentWord: word, id: userId})
             .then(response => {
