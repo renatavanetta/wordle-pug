@@ -114,7 +114,7 @@ function clearTiles() {
 
 }
 
-function checkWord() {
+async function checkWord() {
 
     let word = "";
 
