@@ -5,6 +5,7 @@ popUp.style.display='none';
 let line = 0;
 let column = 0;
 let userId = null;
+let processing = false;
 
 document.addEventListener("keydown", myEventHandler);
 
@@ -119,14 +120,14 @@ async function clearTiles() {
 
 }
 
-let processing = false;
-
 async function checkWord() {
 
     let word = "";
 
-    if(!processing){
+    if(processing == false){
+
         processing = true;
+
         if(column === 5){
             for(let a=0; a<5; a++){
                 const tile = document.getElementById('line-' + line + '-column-' + a)
