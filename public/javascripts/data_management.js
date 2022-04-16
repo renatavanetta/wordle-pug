@@ -126,6 +126,7 @@ async function checkWord() {
     let word = "";
 
     if(!processing){
+        processing = true;
         if(column === 5){
             for(let a=0; a<5; a++){
                 const tile = document.getElementById('line-' + line + '-column-' + a)
